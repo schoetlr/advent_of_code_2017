@@ -3,11 +3,11 @@ def solve_captcha(input)
   half_length = length / 2
 
   input = input.chars.map(&:to_i)
-  input.concat input[0..half_length]
 
   sum = 0
   (0...length).each do |i|
-    if input[i] == input[i + half_length]
+    match_i = (i+half_length) % length
+    if input[i] == input[match_i]
       sum += input[i]
     end
   end
