@@ -1,5 +1,5 @@
 import re
-
+import itertools
 
 def checksum(input):
     result = 0
@@ -8,6 +8,17 @@ def checksum(input):
         row = re.split('\s+', row)
         row = [int(x) for x in row]
         
+        for combo in itertools.combinations(row, 2):
+            a = combo[0]
+            b = combo[1]
+
+            if a >= b and a % b == 0:
+                result += (a / b)
+                break
+            elif b > a and b % a == 0:
+                result += (b / a)
+                break
+            
 
     return result
 
